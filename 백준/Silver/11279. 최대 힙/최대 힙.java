@@ -1,32 +1,33 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    private static StringBuilder sb = new StringBuilder();
+    private static StringTokenizer st;
+
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        PriorityQueue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
 
-        // 연산의 개수
-        int n = Integer.parseInt(br.readLine());
+        int N = Integer.parseInt(br.readLine());
+        
+        // 우선순위 큐: 가장 큰 값을 선입선출 하기 위해 기본 우선순위(오름차순)의 반대로 설정
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
 
-        int x;
-        for(int i=0; i<n; i++){
-            x = Integer.parseInt(br.readLine());
+        for(int i = 0; i < N; i++){
+            int element = Integer.parseInt(br.readLine());
 
-            // x가 자연수인 경우 : 배열에 x라는 값을 추가
-            if(x>0){
-                q.add(x);
-            }
-            // x가 0인 경우 : 가장 큰 값 출력 후 배열에서 제거
-            else{
-                if(!q.isEmpty()){
-                    System.out.println(q.poll());
-                }
-                else{
-                    System.out.println(0);
-                }
+            if(element > 0){
+                queue.add(element);
+            } else {
+                if(queue.isEmpty()) sb.append(0 + "\n");
+                else sb.append(queue.poll() + "\n");
             }
         }
+
+        bw.write(String.valueOf(sb));
+        bw.close();
         br.close();
     }
 }
