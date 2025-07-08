@@ -46,12 +46,12 @@ public class Main {
         }
 
         for(int i = start; i < C; i++){
-//            if(visited[i]) continue;
+            if(visited[i]) continue;
 
             code[idx] = list[i];
-//            visited[i] = true;
+            visited[i] = true;
             getCode(i+1, idx+1);
-//            visited[i] = false;
+            visited[i] = false;
         }
     }
 
